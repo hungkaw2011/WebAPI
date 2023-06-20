@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model DemoLogic
+@inject DemoLogic logic
+@inject ILogger<Index> logger
+<div class="text-center">
+    <p>number1: @logic.Value1</p>
+    <p>number2: @logic.Value2</p>
+</div>
+@functions{
+    protected override void OnInitialized()
+    {
+        logger.LogInformation("Display value of {value1} and {value2}",logger.va)
+    }
+}

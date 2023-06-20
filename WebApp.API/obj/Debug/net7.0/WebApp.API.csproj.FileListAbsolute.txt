@@ -74,3 +74,14 @@ C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Debug\net7.0\refint\WebApp.API
 C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Debug\net7.0\WebApp.API.pdb
 C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Debug\net7.0\WebApp.API.genruntimeconfig.cache
 C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Debug\net7.0\ref\WebApp.API.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Debug\net7.0\WebApp.API.Properties.Resources.resources
+C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Debug\net7.0\WebApp.API.csproj.GenerateResource.cache
