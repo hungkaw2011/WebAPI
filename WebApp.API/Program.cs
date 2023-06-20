@@ -2,20 +2,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using WebApp.API.Data;
 using WebApp.API.Mappings;
 using WebApp.API.Repositories;
+using WebApp.API.Repositories.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -45,6 +46,7 @@ builder.Services.AddSwaggerGen(options =>
 		}
 	});
 });
+
 builder.Services.AddDbContext<ApplicationDbContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
 	);
@@ -52,17 +54,21 @@ builder.Services.AddDbContext<AuthenticationDbContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuthenticationConnectionString"))
 	);
 
+// Dependency Injection
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 builder.Services.AddScoped<ITokenReporsitory, TokenRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
+// DTO AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
-
-builder.Services.AddIdentityCore<IdentityUser>() //Đăng ký dịch vụ IdentityCore trong container dịch vụ của ứng dụng.
-	.AddRoles<IdentityRole>() //Thêm hỗ trợ cho việc quản lý vai trò (roles) trong Identity
-	.AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("WebAPI") //Cung cấp mã thông báo (token provider) tùy chỉnh cho hệ thống.
-	.AddEntityFrameworkStores<AuthenticationDbContext>()  // Lưu trữ thông tin người dùng và vai trò vào cơ sở dữ liệu 
+//Đăng ký dịch vụ IdentityCore trong container dịch vụ của ứng dụng.
+builder.Services.AddIdentityCore<IdentityUser>() 
+	.AddRoles<IdentityRole>()													//Thêm hỗ trợ cho việc quản lý vai trò (roles) trong Identity
+	.AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("WebAPI")	//Cung cấp mã thông báo (token provider) tùy chỉnh cho hệ thống.
+	.AddEntityFrameworkStores<AuthenticationDbContext>()				// Lưu trữ thông tin người dùng và vai trò vào cơ sở dữ liệu 
 	.AddDefaultTokenProviders();
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
 	options.Password.RequireNonAlphanumeric = false;
@@ -96,10 +102,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//Xác thực và ủy quuyền vào các tài nguyên truy cập
 app.UseAuthentication();
-
 app.UseAuthorization();
 
+//Cho phép truy cập các tệp tĩnh, như hình ảnh, từ các thư mục được chỉ định trên máy chủ
+app.UseStaticFiles(new StaticFileOptions
+{
+	FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+	RequestPath = "/Images"
+});
+
+//Định tuyến các yêu cầu HTTP tới các điều khiển (controllers) và hành động (actions) tương ứng trong ứng dụng
 app.MapControllers();
 
 app.Run();
