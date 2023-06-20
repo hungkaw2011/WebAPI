@@ -28,7 +28,7 @@ namespace WebApp.API.Controllers
 		// GET ALL REGIONS
 		// GET: https://localhost:portnumber/api/regions
 		[HttpGet]
-		[Authorize(Roles = "Reader,Writer")]
+		//[Authorize(Roles = "Reader,Writer")]
 		public async Task<IActionResult> GetAll()
 		{
 			// Lấy dữ liệu từ Database - (Domain models)
