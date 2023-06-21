@@ -4,7 +4,7 @@
 
 **Sử dụng PostMan login để lấy về JwtToken**
 
-<img src="https://github.com/hungkaw2011/WebAPI/assets/94224022/4fe057c5-30c8-429c-9dd1-bd84d4dde6b1"></img>
+**<img maxwidth="200px" height="auto" src="https://github.com/hungkaw2011/WebAPI/assets/94224022/4fe057c5-30c8-429c-9dd1-bd84d4dde6b1"></img>**
 
 **Sau khi có được JwtToken có thể Get API vào UI để lấy được data**
 
