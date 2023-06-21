@@ -28,7 +28,7 @@ namespace WebApp.API.Controllers
 		// GET ALL REGIONS
 		// GET: https://localhost:portnumber/api/regions
 		[HttpGet]
-		//[Authorize(Roles = "Reader,Writer")]
+		[Authorize(Roles = "Reader,Writer")]
 		public async Task<IActionResult> GetAll()
 		{
 			// Lấy dữ liệu từ Database - (Domain models)
@@ -45,7 +45,7 @@ namespace WebApp.API.Controllers
 		// GET: https://localhost:portnumber/api/regions/{id}
 		[HttpGet]
 		[Route("{id:Guid}")]
-		[Authorize(Roles = "Reader,Writer")]
+		//[Authorize(Roles = "Reader,Writer")]
 
 		public async Task<IActionResult> GetById([FromRoute] Guid id)
 		{
@@ -66,7 +66,7 @@ namespace WebApp.API.Controllers
 
 		// POST To Create New Region
 		// POST: https://localhost:portnumber/api/regions
-		[Authorize(Roles = "Writer")]
+		//[Authorize(Roles = "Writer")]
 
 		[HttpPost]
 		public async Task<IActionResult> Create([FromBody] AddNewRegionRequestDto addRegionRequestDto)
@@ -88,7 +88,7 @@ namespace WebApp.API.Controllers
 		// PUT: https://localhost:portnumber/api/regions/{id}
 		[HttpPut]
 		[Route("{id:Guid}")]
-		[Authorize(Roles = "Writer")]
+		//[Authorize(Roles = "Writer")]
 
 		public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
 		{
@@ -106,12 +106,11 @@ namespace WebApp.API.Controllers
 			return Ok(mapper.Map<RegionDto>(regionDomainModel));
 		}
 
-
 		// Delete Region
 		// DELETE: https://localhost:portnumber/api/regions/{id}
 		[HttpDelete]
 		[Route("{id:Guid}")]
-		[Authorize(Roles = "Writer")]
+		//[Authorize(Roles = "Writer")]
 
 		public async Task<IActionResult> Delete([FromRoute] Guid id)
 		{

@@ -46,6 +46,23 @@ builder.Services.AddSwaggerGen(options =>
 		}
 	});
 });
+//Cấu hình dịch vụ xác thực JWT Bearer trong ASP.NET Core,
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    options => options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+    });
+builder.Services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()                                                   //Thêm hỗ trợ cho việc quản lý vai trò (roles) trong Identity
+    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("WebAPI")   //Cung cấp mã thông báo (token provider) tùy chỉnh cho hệ thống.
+    .AddEntityFrameworkStores<AuthenticationDbContext>()                // Lưu trữ thông tin người dùng và vai trò vào cơ sở dữ liệu 
+    .AddDefaultTokenProviders();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
 	options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
@@ -62,12 +79,6 @@ builder.Services.AddScoped<IImageRepository, ImageRepository>();
 // DTO AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
-//Đăng ký dịch vụ IdentityCore trong container dịch vụ của ứng dụng.
-builder.Services.AddIdentityCore<IdentityUser>() 
-	.AddRoles<IdentityRole>()													//Thêm hỗ trợ cho việc quản lý vai trò (roles) trong Identity
-	.AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("WebAPI")	//Cung cấp mã thông báo (token provider) tùy chỉnh cho hệ thống.
-	.AddEntityFrameworkStores<AuthenticationDbContext>()				// Lưu trữ thông tin người dùng và vai trò vào cơ sở dữ liệu 
-	.AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -79,18 +90,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 	options.Password.RequiredUniqueChars = 1;
 });
 
-//Cấu hình dịch vụ xác thực JWT Bearer trong ASP.NET Core,
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
-	options => options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-	{
-		ValidateIssuer = true,
-		ValidateAudience = true,
-		ValidateLifetime = true,
-		ValidateIssuerSigningKey = true,
-		ValidIssuer = builder.Configuration["Jwt:Issuer"],
-		ValidAudience = builder.Configuration["Jwt:Audience"],
-		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
-	});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

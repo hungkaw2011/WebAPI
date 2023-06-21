@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="HungKa" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\hungq\\source\\repos\\WebAPI\\WebApp\.API\\obj\\Release\\net7\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="WebApp.API.Data.ApplicationDbContext" description="" value="Data Source=tcp:sqldb-hungka.database.windows.net,1433;Initial Catalog=sqlDb-HungKa;User Id=HungKa@sqldb-hungka;Password=hung2002@" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\hungq\\source\\repos\\WebAPI\\WebApp\.API\\obj\\Release\\net7\.0\\PubTmp\\EFSQLScripts\\WebApp\.API\.Data\.ApplicationDbContext\.sql$" />
+  </parameter>
+  <parameter name="WebApp.API.Data.AuthenticationDbContext" description="" value="Data Source=tcp:sqldb-hungka.database.windows.net,1433;Initial Catalog=sqlDb-HungKa;User Id=HungKa@sqldb-hungka;Password=hung2002@" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\hungq\\source\\repos\\WebAPI\\WebApp\.API\\obj\\Release\\net7\.0\\PubTmp\\EFSQLScripts\\WebApp\.API\.Data\.AuthenticationDbContext\.sql$" />
+  </parameter>
+</parameters>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Release\net7.0\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Release\net7.0\PubTmp\EFSQLScripts\WebApp.API.Data.ApplicationDbContext.sql" />
+  <dbfullsql path="C:\Users\hungq\source\repos\WebAPI\WebApp.API\obj\Release\net7.0\PubTmp\EFSQLScripts\WebApp.API.Data.AuthenticationDbContext.sql" />
+</sitemanifest>

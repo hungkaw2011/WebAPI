@@ -29,7 +29,7 @@ namespace WebApp.API.Repositories
 				configuration["Jwt:Issuer"],
 				configuration["Jwt:Audience"],
 				claims,
-				expires: DateTime.Now.AddSeconds(15),
+				expires: DateTime.Now.AddDays(7),
 				signingCredentials: credentials);
 
 			return new JwtSecurityTokenHandler().WriteToken(token);

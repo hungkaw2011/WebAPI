@@ -1,3 +1,8 @@
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Net.Http.Headers;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
@@ -20,7 +25,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
